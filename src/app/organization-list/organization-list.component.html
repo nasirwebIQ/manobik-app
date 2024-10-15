@@ -1,0 +1,114 @@
+<div class="organization-list-container p-5 font-sans text-gray-800">
+  <!-- Header Section -->
+  <div class="header-section flex justify-between items-center mb-5">
+    <h1 class="text-xl font-bold mr-auto">Organization List</h1>
+    <div class="controls flex items-center gap-2">
+      <input
+        type="text"
+        placeholder="Search..."
+        class="p-2 border border-gray-300 rounded-lg"
+      />
+      <button
+        class="filter-button px-3 py-2 rounded-lg text-gray-700 font-bold bg-gray-200"
+      >
+        Filter
+      </button>
+      <button
+        class="create-button px-3 py-2 rounded-lg text-white font-bold bg-pink-600"
+      >
+        + Create Organization
+      </button>
+    </div>
+  </div>
+
+  <!-- Filter PopUP -->
+  <!-- <div
+    class="filter-modal mb-5 p-5 border border-gray-300 rounded-lg shadow-lg"
+  >
+    <h3 class="text-lg font-bold mb-3">Filter Organizations</h3>
+    <div class="filter-group mb-4">
+      <label for="headFilter" class="block mb-1">Head of Organization</label>
+      <select id="headFilter" class="border border-gray-300 rounded-lg p-2">
+        <option value="">All</option>
+        <option></option>
+      </select>
+    </div>
+    <div class="filter-group mb-4">
+      <label for="emailFilter" class="block mb-1">Email</label>
+      <select id="emailFilter" class="border border-gray-300 rounded-lg p-2">
+        <option value="">All</option>
+        <option></option>
+      </select>
+    </div>
+    <button class="px-3 py-2 rounded-lg bg-blue-500 text-white">Apply</button>
+    <button class="ml-2 px-3 py-2 rounded-lg bg-gray-200 text-gray-700">
+      Clear All
+    </button>
+  </div> -->
+
+  <!-- Organization Table -->
+  <div class="table-container mb-5 rounded-lg overflow-hidden shadow-md">
+    <table class="min-w-full border-collapse">
+      <thead>
+        <tr>
+          <th class="p-3 text-left bg-gray-100 text-gray-600 font-bold text-sm">
+            No
+          </th>
+          <th class="p-3 text-left bg-gray-100 text-gray-600 font-bold text-sm">
+            Organization Name
+          </th>
+          <th class="p-3 text-left bg-gray-100 text-gray-600 font-bold text-sm">
+            Email
+          </th>
+          <th class="p-3 text-left bg-gray-100 text-gray-600 font-bold text-sm">
+            Phone
+          </th>
+          <th class="p-3 text-left bg-gray-100 text-gray-600 font-bold text-sm">
+            Head of the Organization
+          </th>
+          <th class="p-3 text-left bg-gray-100 text-gray-600 font-bold text-sm">
+            User Count
+          </th>
+          <th class="p-3 text-left bg-gray-100 text-gray-600 font-bold text-sm">
+            Action
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Use *ngFor to iterate over the filtered organizations array -->
+        <tr
+          *ngFor="let org of organizations; let i = index"
+          class="even:bg-white"
+        >
+          <td class="p-3">{{ i + 1 }}</td>
+          <td class="p-3">
+            <div class="org-info flex items-center">
+              <img
+                [src]="org.logo"
+                alt="Organization Logo"
+                class="org-logo w-6 h-6 rounded-full mr-2"
+              />
+              <span>{{ org.name }}</span>
+            </div>
+          </td>
+          <td class="p-3">{{ org.email }}</td>
+          <td class="p-3">{{ org.phone }}</td>
+          <td class="p-3">{{ org.head }}</td>
+          <td class="p-3">{{ org.userCount }}</td>
+          <td class="p-3">
+            <button class="action-button text-gray-500 text-lg">...</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination flex justify-between items-center">
+    <button class="show-entries px-3 py-2 rounded-lg bg-gray-200">
+      Show 10
+    </button>
+    <span class="text-sm text-gray-600">
+      Showing 1 to 10 of{{ organizations.length }}</span
+    >
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="p-6 text-gray-800">
+  <!-- Header Section -->
+  <div class="flex justify-end items-center mb-5">
+    <div class="flex items-center gap-4">
+      <input type="text" placeholder="Search..." class="px-4 py-2 border border-gray-300 rounded-lg" />
+      <button class="px-4 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200">Filter</button>
+      <button class="px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700">Download Format</button>
+      <button class="px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700">+ Create User</button>
+    </div>
+  </div>
+
+  <!-- User Table -->
+  <div class="rounded-lg shadow-lg overflow-hidden mb-6">
+    <table class="min-w-full table-auto">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-5 py-3 text-left text-sm font-semibold text-gray-600">No</th>
+          <th class="px-5 py-3 text-left text-sm font-semibold text-gray-600">User Name</th>
+          <th class="px-5 py-3 text-left text-sm font-semibold text-gray-600">Organization Name</th>
+          <th class="px-5 py-3 text-left text-sm font-semibold text-gray-600">User Role</th>
+          <th class="px-5 py-3 text-left text-sm font-semibold text-gray-600">Designation</th>
+          <th class="px-5 py-3 text-left text-sm font-semibold text-gray-600">Email</th>
+          <th class="px-5 py-3 text-left text-sm font-semibold text-gray-600">Phone</th>
+          <th class="px-5 py-3 text-left text-sm font-semibold text-gray-600">Action</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <tr >
+          <td class="px-5 py-4 text-sm">
+            <div class="flex items-center">
+              <img src="gf" alt="user Logo" class="w-6 h-6 rounded-full mr-2" />
+              <span class="text-sm"></span>
+            </div>
+          </td>
+          <td class="px-5 py-4 text-sm"></td>
+          <td class="px-5 py-4 text-sm"></td>
+          <td class="px-5 py-4 text-sm"></td>
+          <td class="px-5 py-4 text-sm"></td>
+          <td class="px-5 py-4 text-sm"></td>
+          <td class="px-5 py-4">
+            <button class="text-gray-500 hover:text-gray-700 text-xl">...</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="flex justify-between items-center">
+    <button class="px-4 py-2 bg-gray-100 rounded-lg">Show 10</button>
+    <span class="text-sm text-gray-600">Showing 1 to 10 of 50 entries</span>
+    <div class="flex items-center gap-2">
+      <button class="px-3 py-2 bg-gray-100 rounded-full">&lt;</button>
+      <button class="px-3 py-2 bg-pink-600 text-white rounded-full">1</button>
+      <button class="px-3 py-2 bg-gray-100 rounded-full">2</button>
+      <button class="px-3 py-2 bg-gray-100 rounded-full">3</button>
+      <span>...</span>
+      <button class="px-3 py-2 bg-gray-100 rounded-full">10</button>
+      <button class="px-3 py-2 bg-gray-100 rounded-full">&gt;</button>
+    </div>
+  </div>
+</div>

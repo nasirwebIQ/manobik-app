@@ -1,60 +1,84 @@
-
-
-<div class="user-list-container">
+<div class="user-list-container p-5 font-sans text-gray-800">
   <!-- Header Section -->
-  <div class="header-section">
-    <div class="controls">
-      <div class="search-container">
-        <input type="text" placeholder="Search..." class="search-input" />
+  <div class="header-section flex justify-end items-center mb-5">
+    <div class="controls flex items-center gap-2.5">
+      <div class="search-container relative">
+        <input
+          type="text"
+          placeholder="Search..."
+          class="search-input pl-10 pr-3 py-2 border border-gray-300 rounded-lg"
+        />
         <img
-          src="../../../assets/images/form-search-icon.png"
+          src="icon/form-search-icon.png"
           alt="Search Icon"
-          class="icon search-icon"
+          class="icon search-icon absolute left-2 top-1/2 transform -translate-y-1/2 w-4 h-4 pointer-events-none"
         />
       </div>
-      <button class="filter-button">
+      <button
+        class="filter-button flex items-center pl-10 pr-3 py-2 border border-none rounded-lg bg-gray-200 text-gray-600 font-bold text-sm"
+      >
         <img
-          src="../../../assets/images/filter-icon.png"
+          src="icon/filter-icon.png"
           alt="Filter Icon"
-          class="icon filter-icon"
+          class="icon filter-icon absolute left-2 top-1/2 transform -translate-y-1/2 w-4 h-4 pointer-events-none"
         />
         Filter
       </button>
-      <button>+ Submit 5w Form</button>
+      <button
+        class="bg-pink-600 text-white rounded-lg px-3 py-2 text-sm font-bold"
+      >
+        + Submit 5w Form
+      </button>
     </div>
   </div>
 
   <!-- User Table -->
-  <div class="table-container">
-    <table>
+  <div class="table-container rounded-lg overflow-hidden shadow-md mb-5">
+    <table class="w-full border-collapse">
       <thead>
-        <tr>
-          <th>No</th>
-          <th>User Name</th>
-          <th>Organization Name</th>
-          <th>User Role</th>
-          <th>Designation</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>Action</th>
+        <tr class="bg-gray-100">
+          <th class="p-3 text-left text-sm font-bold text-gray-600">No</th>
+          <th class="p-3 text-left text-sm font-bold text-gray-600">
+            User Name
+          </th>
+          <th class="p-3 text-left text-sm font-bold text-gray-600">
+            Organization Name
+          </th>
+          <th class="p-3 text-left text-sm font-bold text-gray-600">
+            User Role
+          </th>
+          <th class="p-3 text-left text-sm font-bold text-gray-600">
+            Designation
+          </th>
+          <th class="p-3 text-left text-sm font-bold text-gray-600">Email</th>
+          <th class="p-3 text-left text-sm font-bold text-gray-600">Phone</th>
+          <th class="p-3 text-left text-sm font-bold text-gray-600">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr >
-          <td></td>
-          <td>
-            <div class="user-info">
-              <img src="" alt="user Logo" class="user-logo" />
-              <span></span>
+        <tr *ngFor="let user of users; let i = index">
+          <td class="p-3">{{ i + 1 }}</td>
+          <td class="p-3">
+            <div class="user-info flex items-center">
+              <img
+                src="{{ user.logo }}"
+                alt="User Logo"
+                class="user-logo w-6 h-6 rounded-full mr-2"
+              />
+              <span>{{ user.name }}</span>
             </div>
           </td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            <button class="action-button">...</button>
+          <td class="p-3">{{ user.orgname }}</td>
+          <td class="p-3">{{ user.userRole }}</td>
+          <td class="p-3">{{ user.designation }}</td>
+          <td class="p-3">{{ user.email }}</td>
+          <td class="p-3">{{ user.phone }}</td>
+          <td class="p-3">
+            <button
+              class="action-button bg-none border-none text-gray-400 cursor-pointer"
+            >
+              ...
+            </button>
           </td>
         </tr>
       </tbody>
@@ -62,17 +86,45 @@
   </div>
 
   <!-- Pagination -->
-  <div class="pagination">
-    <button class="show-entries">Show 10</button>
-    <span>Showing 1 to 10 of 50 entries</span>
-    <div class="pagination-controls">
-      <button class="page-button">&lt;</button>
-      <button class="page-number active">1</button>
-      <button class="page-number">2</button>
-      <button class="page-number">3</button>
-      <span>...</span>
-      <button class="page-number">10</button>
-      <button class="page-button">&gt;</button>
+  <div class="pagination flex justify-between items-center">
+    <button
+      class="show-entries px-3 py-1 rounded-lg bg-gray-200 border-none text-sm"
+    >
+      Show 10
+    </button>
+    <span class="text-sm text-gray-500">Showing 1 to 10 of 50 entries</span>
+    <div class="pagination-controls flex items-center gap-2">
+      <button
+        class="page-button px-3 py-1 rounded-full bg-gray-200 border-none text-sm"
+      >
+        &lt;
+      </button>
+      <button
+        class="page-number px-3 py-1 rounded-full bg-gray-200 border-none text-sm active:bg-pink-600 active:text-white"
+      >
+        1
+      </button>
+      <button
+        class="page-number px-3 py-1 rounded-full bg-gray-200 border-none text-sm"
+      >
+        2
+      </button>
+      <button
+        class="page-number px-3 py-1 rounded-full bg-gray-200 border-none text-sm"
+      >
+        3
+      </button>
+      <span class="text-sm text-gray-500">...</span>
+      <button
+        class="page-number px-3 py-1 rounded-full bg-gray-200 border-none text-sm"
+      >
+        10
+      </button>
+      <button
+        class="page-button px-3 py-1 rounded-full bg-gray-200 border-none text-sm"
+      >
+        &gt;
+      </button>
     </div>
   </div>
 </div>

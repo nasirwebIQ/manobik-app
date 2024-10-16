@@ -1,46 +1,89 @@
-
 <!-- user-list.component.html -->
-<div class="user-list-container">
+<div class="p-5 font-sans text-gray-800">
   <!-- Header Section -->
-  <div class="header-section">
-    <div class="controls">
-      <input type="text" placeholder="Search..." class="search-input" />
-      <button class="filter-button">Filter</button>
-      <button class="create-button">+ Submit Plan</button>
+  <div class="flex justify-end items-center mb-5">
+    <div class="flex items-center gap-2">
+      <input
+        type="text"
+        placeholder="Search..."
+        class="px-3 py-2 border border-gray-300 rounded-lg"
+      />
+      <button
+        class="px-3 py-2 rounded-lg text-sm font-bold bg-gray-200 text-gray-600"
+      >
+        Filter
+      </button>
+      <button
+        class="px-3 py-2 rounded-lg text-sm font-bold bg-pink-500 text-white"
+      >
+        + Submit Plan
+      </button>
     </div>
   </div>
 
   <!-- user Table -->
-  <div class="table-container">
-    <table>
+  <div class="rounded-lg overflow-hidden shadow-md mb-5">
+    <table class="w-full border-collapse">
       <thead>
         <tr>
-          <th>No</th>
-          <th>Submitted By</th>
-
-          <th>Phone</th>
-          <th>Submitted On</th>
-          <th>Location</th>
-
-          <th>Action</th>
+          <th
+            class="px-3 py-2 text-left text-gray-600 bg-gray-100 font-bold text-sm"
+          >
+            No
+          </th>
+          <th
+            class="px-3 py-2 text-left text-gray-600 bg-gray-100 font-bold text-sm"
+          >
+            Submitted By
+          </th>
+          <th
+            class="px-3 py-2 text-left text-gray-600 bg-gray-100 font-bold text-sm"
+          >
+            Phone
+          </th>
+          <th
+            class="px-3 py-2 text-left text-gray-600 bg-gray-100 font-bold text-sm"
+          >
+            Submitted On
+          </th>
+          <th
+            class="px-3 py-2 text-left text-gray-600 bg-gray-100 font-bold text-sm"
+          >
+            Location
+          </th>
+          <th
+            class="px-3 py-2 text-left text-gray-600 bg-gray-100 font-bold text-sm"
+          >
+            Action
+          </th>
         </tr>
       </thead>
       <tbody>
         <!-- Use *ngFor to iterate over the users array -->
-        <tr >
-          <td></td>
-          <td>
-            <div class="user-info">
-              <img src=""/>
-              <span></span>
+        <tr
+          *ngFor="let user of users; let i = index"
+          class="bg-white even:bg-gray-100"
+        >
+          <td class="px-3 py-3 text-left">{{ i + 1 }}</td>
+          <td class="px-3 py-3 text-left">
+            <div class="flex items-center">
+              <img
+                src="{{ user.logo }}"
+                alt="User Logo"
+                class="w-6 h-6 rounded-full mr-2"
+              />
+              <span>{{ user.name }}</span>
             </div>
           </td>
-          <td></td>
-          <td></td>
-          <td></td>
-
-          <td>
-            <button class="action-button">...</button>
+          <td class="px-3 py-3 text-left">{{ user.phone }}</td>
+          <td class="px-3 py-3 text-left">{{ user.submission_date }}</td>
+          <td class="px-3 py-3 text-left">{{ user.location }}</td>
+          <td class="px-3 py-3 text-left">
+            <button
+              class="bg-none border-none text-gray-600 text-xl cursor-pointer"
+            >
+              ...
+            </button>
           </td>
         </tr>
       </tbody>
@@ -48,17 +91,43 @@
   </div>
 
   <!-- Pagination -->
-  <div class="pagination">
-    <button class="show-entries">Show 10</button>
-    <span>Showing 1 to 10 of 50 entries</span>
-    <div class="pagination-controls">
-      <button class="page-button">&lt;</button>
-      <button class="page-number active">1</button>
-      <button class="page-number">2</button>
-      <button class="page-number">3</button>
-      <span>...</span>
-      <button class="page-number">10</button>
-      <button class="page-button">&gt;</button>
+  <div class="flex justify-between items-center mb-5">
+    <button class="px-3 py-1.5 rounded-lg bg-gray-200 border-none text-sm">
+      Show 10
+    </button>
+    <span class="text-sm text-gray-500">Showing 1 to 10 of 50 entries</span>
+    <div class="flex items-center gap-2">
+      <button
+        class="px-3 py-1.5 rounded-full bg-gray-200 border-none cursor-pointer text-sm"
+      >
+        &lt;
+      </button>
+      <button
+        class="px-3 py-1.5 rounded-full bg-pink-500 text-white cursor-pointer text-sm"
+      >
+        1
+      </button>
+      <button
+        class="px-3 py-1.5 rounded-full bg-gray-200 border-none cursor-pointer text-sm"
+      >
+        2
+      </button>
+      <button
+        class="px-3 py-1.5 rounded-full bg-gray-200 border-none cursor-pointer text-sm"
+      >
+        3
+      </button>
+      <span class="text-sm text-gray-500">...</span>
+      <button
+        class="px-3 py-1.5 rounded-full bg-gray-200 border-none cursor-pointer text-sm"
+      >
+        10
+      </button>
+      <button
+        class="px-3 py-1.5 rounded-full bg-gray-200 border-none cursor-pointer text-sm"
+      >
+        &gt;
+      </button>
     </div>
   </div>
 </div>

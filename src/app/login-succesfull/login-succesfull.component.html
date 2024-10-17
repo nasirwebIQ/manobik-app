@@ -1,6 +1,51 @@
-<div class="h-full">
+<div class="h-full flex flex-row gap-16">
   <!-- left side -->
-  <div class="mt-10 ml-10 w-[760 px] h-[944 x]">
-    <img src="images/sign-in.svg" alt="#" />
+  <div class="h-[944px] ml-10 mt-10 w-1/2">
+    <img
+      class="w-full h-full object-cover rounded"
+      src="images/sign-in.svg"
+      alt="#"
+    />
+  </div>
+  <!-- right side -->
+  <div class="w-[480px] mt-10 flex flex-col justify-between h-[944px]">
+    <div>
+      <!-- logo -->
+      <img class="w-[8.65rem] h-[2.5rem]" src="/images/g-logo.png" alt="#" />
+    </div>
+    <!-- successful -->
+
+    <div
+      class="border border-gray-300 shadow-lg p-8 flex flex-col items-center rounded gap-6"
+    >
+      <img class="h-16 w-16" src="icon/check-icon.png" alt="#" />
+      <h1 class="font-bold text-2xl">You're All Set</h1>
+      <span class="flex flex-col items-center text-gray-400 font-thin"
+        >Your password has been successfully created.
+        <span>Click below to log in</span>
+      </span>
+      <button
+        class="w-[300px] h-10 p- bg-[#D10D74] text-white rounded-md hover:bg-[#c43481] transition duration-500"
+      >
+        <a href="">Continue</a>
+      </button>
+    </div>
+    <!-- footer -->
+    <div>
+      <div class="flex justify-between w-full items-center">
+        <div>
+          <span href="#" class="text-sm w-[50%] text-[#656565]"
+            >© 2024 brac | All rights reserved</span
+          >
+        </div>
+        <div class="flex justify-between w-[50%] text-[#3DB7E4]">
+          <a href="#" class="text-sm hover:underline">Term & Condition</a>
+          <img class="text-sm" src="icon/Vector.png" alt="Vector" />
+          <a href="#" class="text-sm text-[#3DB7E4] hover:underline"
+            >Privacy & Policy</a
+          >
+        </div>
+      </div>
+    </div>
   </div>
 </div>

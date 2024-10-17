@@ -1,7 +1,22 @@
 <div
-  class="w-[250px] h-screen bg-white border pt-[20px] flex flex-col items-center fixed"
+  [ngClass]="{
+    '-translate-x-full': !sidebarOpen,
+    'translate-x-0': sidebarOpen
+  }"
+  class="transition-transform duration-300 w-[250px] h-screen bg-white border pt-[20px] flex flex-col items-center fixed"
 >
   <img src="images/g-logo.png" alt="Logo" class="w-[100px] mb-[20px]" />
+  <div
+    class="arrow-left absolute top-5 right-[-25px] cursor-pointer"
+    (click)="changeSidebarStatus()"
+  >
+    <img
+      src="icon/arrow-left.png"
+      class="w-6 h-6 hover:opacity-75 transition-opacity duration-300"
+      alt="Example Image"
+    />
+  </div>
+
   <nav class="flex flex-col w-full pl-[20px]">
     <span class="px-[30px] text-gray-500 text-[14px]"><p>Main Menu</p></span>
     <a

@@ -11,11 +11,13 @@ import { PlanDetailsComponent } from './plan-list/plan-details/plan-details.comp
 import { UserDashboardComponent } from './user-list/user-dashboard/user-dashboard.component';
 import { CreateUserComponent } from './user-list/create-user/create-user.component';
 import { ResetPasswordComponent } from './user-list/reset-password/reset-password.component';
+import { LoginSuccesfullComponent } from './login-succesfull/login-succesfull.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
   { path: 'sign-in', component: SignInComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'successful', component: LoginSuccesfullComponent },
   {
     path: 'organization',
     component: LayoutComponent,

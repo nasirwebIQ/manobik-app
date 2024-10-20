@@ -1,11 +1,12 @@
 <div class="layout-container flex">
-  <app-sidebar></app-sidebar>
-  <div class="main-content flex-1 ml-[250px] flex flex-col">
+  <app-sidebar (sidebarToggle)="handleSidebarToggle($event)"></app-sidebar>
+  <div
+    class="main-content flex-1 transition-all duration-500"
+    [ngClass]="{ 'ml-[250px]': isSidebarOpen, 'ml-0': !isSidebarOpen }"
+  >
     <app-header></app-header>
-    <!-- Bind dynamic title  -->
     <div class="content-area p-5 flex-1 bg-gray-100">
       <router-outlet></router-outlet>
-      <!-- Dynamic content area  -->
     </div>
   </div>
 </div>

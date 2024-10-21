@@ -26,7 +26,7 @@ import { NgClass } from '@angular/common';
   styleUrls: ['./layout.component.scss'], // Fix: should be styleUrls
 })
 export class LayoutComponent {
-  isSidebarOpen = false; // Track sidebar status
+  isSidebarOpen = true; // Track sidebar status
 
   handleSidebarToggle(isOpen: boolean) {
     this.isSidebarOpen = isOpen; // Update the layout based on sidebar status

@@ -31,7 +31,7 @@ import { CommonModule } from '@angular/common';
 })
 export class SidebarComponent {
   @Output() sidebarToggle = new EventEmitter<boolean>();
-  sidebarOpen = false;
+  sidebarOpen = true;
 
   changeSidebarStatus() {
     this.sidebarOpen = !this.sidebarOpen;

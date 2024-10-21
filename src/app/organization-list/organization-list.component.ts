@@ -1,14 +1,17 @@
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-organization-list',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, NgIf, FormsModule],
   templateUrl: './organization-list.component.html',
   styleUrl: './organization-list.component.scss',
 })
 export class OrganizationListComponent {
+  constructor(private router: Router) {}
   organizations = [
     {
       name: 'Organization 1',
@@ -91,4 +94,70 @@ export class OrganizationListComponent {
       logo: 'images/org-logo.png',
     },
   ];
+
+  // State for filters
+  selectedHead: string = '';
+  selectedEmail: string = '';
+  filteredOrganizations = [...this.organizations];
+
+  // State for filter popup visibility
+  filterPopupVisible: boolean = false;
+
+  // Method to apply the filter
+  applyFilter() {
+    this.filteredOrganizations = this.organizations.filter((org) => {
+      const matchesHead = this.selectedHead
+        ? org.head === this.selectedHead
+        : true;
+      const matchesEmail = this.selectedEmail
+        ? org.email === this.selectedEmail
+        : true;
+      return matchesHead && matchesEmail;
+    });
+    this.filterPopupVisible = false; // Hide the filter popup after applying
+  }
+
+  // Method to clear all filters
+  clearFilter() {
+    this.selectedHead = '';
+    this.selectedEmail = '';
+    this.filteredOrganizations = [...this.organizations]; // Reset to all organizations
+    this.filterPopupVisible = false; // Hide the filter popup
+  }
+
+  // Method to toggle the filter popup
+  toggleFilterPopup() {
+    this.filterPopupVisible = !this.filterPopupVisible;
+  }
+  menuVisible: boolean[] = [];
+
+  // Method to toggle the visibility of the action menu
+  toggleMenu(index: number) {
+    this.menuVisible[index] = !this.menuVisible[index];
+  }
+
+  // Method to view details of an organization
+  viewDetails(org: any) {
+    // Navigate to the details component, e.g., using Angular Router
+    // this.router.navigate(['/organization-details', org.id]);
+    console.log('View details for:', org);
+    this.router.navigate(['/organization/organization-detail']);
+    // Close the menu after navigating
+    this.closeAllMenus();
+  }
+
+  // Method to edit an organization
+  editOrganization(org: any) {
+    // Navigate to the edit component, e.g., using Angular Router
+    // this.router.navigate(['/edit-organization', org.id]);
+    console.log('Edit organization:', org);
+    this.router.navigate(['/organization/edit-organization']);
+    // Close the menu after navigating
+    this.closeAllMenus();
+  }
+
+  // Method to close all menus
+  closeAllMenus() {
+    this.menuVisible = this.menuVisible.map(() => false);
+  }
 }

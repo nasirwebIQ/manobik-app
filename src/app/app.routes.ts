@@ -13,6 +13,8 @@ import { CreateUserComponent } from './user-list/create-user/create-user.compone
 import { ResetPasswordComponent } from './user-list/reset-password/reset-password.component';
 import { LoginSuccesfullComponent } from './login-succesfull/login-succesfull.component';
 import { ResponsiveComponent } from './responsive/responsive.component';
+import { OrganizationDetailsComponent } from './organization-details/organization-details.component';
+import { EditOrganizationComponent } from './edit-organization/edit-organization.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
@@ -39,7 +41,17 @@ export const routes: Routes = [
       {
         path: '',
         component: OrganizationListComponent,
-        data: { title: 'Organizations' },
+        data: { title: 'Organization' },
+      },
+      {
+        path: 'organization-detail',
+        component: OrganizationDetailsComponent,
+        data: { title: 'Organization Details' },
+      },
+      {
+        path: 'edit-organization',
+        component: EditOrganizationComponent,
+        data: { title: 'Edit Organization' },
       },
     ],
   },

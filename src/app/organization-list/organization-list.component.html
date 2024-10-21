@@ -9,6 +9,7 @@
         class="p-2 border border-gray-300 rounded-lg"
       />
       <button
+        (click)="toggleFilterPopup()"
         class="filter-button px-3 py-2 rounded-lg text-gray-700 font-bold bg-gray-200"
       >
         Filter
@@ -21,30 +22,55 @@
     </div>
   </div>
 
-  <!-- Filter PopUP -->
-  <!-- <div
-    class="filter-modal mb-5 p-5 border border-gray-300 rounded-lg shadow-lg"
+  <!-- Filter Popup -->
+  <div
+    *ngIf="filterPopupVisible"
+    class="filter-modal bg-white shadow-lg rounded-lg p-5 w-72 absolute top-20 right-5 z-50"
   >
-    <h3 class="text-lg font-bold mb-3">Filter Organizations</h3>
+    <h3 class="text-lg font-semibold mb-5">Filter Organizations</h3>
     <div class="filter-group mb-4">
-      <label for="headFilter" class="block mb-1">Head of Organization</label>
-      <select id="headFilter" class="border border-gray-300 rounded-lg p-2">
+      <label for="headFilter" class="block font-medium mb-2"
+        >Head of Organization</label
+      >
+      <select
+        id="headFilter"
+        [(ngModel)]="selectedHead"
+        class="w-full p-2.5 rounded border border-gray-300"
+      >
         <option value="">All</option>
-        <option></option>
+        <option *ngFor="let org of organizations" [value]="org.head">
+          {{ org.head }}
+        </option>
       </select>
     </div>
     <div class="filter-group mb-4">
-      <label for="emailFilter" class="block mb-1">Email</label>
-      <select id="emailFilter" class="border border-gray-300 rounded-lg p-2">
+      <label for="emailFilter" class="block font-medium mb-2">Email</label>
+      <select
+        id="emailFilter"
+        [(ngModel)]="selectedEmail"
+        class="w-full p-2.5 rounded border border-gray-300"
+      >
         <option value="">All</option>
-        <option></option>
+        <option *ngFor="let org of organizations" [value]="org.email">
+          {{ org.email }}
+        </option>
       </select>
     </div>
-    <button class="px-3 py-2 rounded-lg bg-blue-500 text-white">Apply</button>
-    <button class="ml-2 px-3 py-2 rounded-lg bg-gray-200 text-gray-700">
-      Clear All
-    </button>
-  </div> -->
+    <div class="flex items-center">
+      <button
+        (click)="applyFilter()"
+        class="apply-button bg-pink-600 text-white py-2 px-4 rounded-lg font-semibold"
+      >
+        Apply
+      </button>
+      <button
+        (click)="clearFilter()"
+        class="clear-button bg-gray-200 py-2 px-4 rounded-lg ml-3"
+      >
+        Clear All
+      </button>
+    </div>
+  </div>
 
   <!-- Organization Table -->
   <div class="table-container mb-5 rounded-lg overflow-hidden shadow-md">
@@ -75,9 +101,8 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Use *ngFor to iterate over the filtered organizations array -->
         <tr
-          *ngFor="let org of organizations; let i = index"
+          *ngFor="let org of filteredOrganizations; let i = index"
           class="even:bg-white"
         >
           <td class="p-3">{{ i + 1 }}</td>
@@ -95,20 +120,46 @@
           <td class="p-3">{{ org.phone }}</td>
           <td class="p-3">{{ org.head }}</td>
           <td class="p-3">{{ org.userCount }}</td>
-          <td class="p-3">
-            <button class="action-button text-gray-500 text-lg">...</button>
+          <td class="p-3 relative">
+            <button
+              class="action-button text-gray-500 text-lg"
+              (click)="toggleMenu(i)"
+            >
+              ...
+            </button>
+            <!-- Action Menu -->
+            <div
+              *ngIf="menuVisible[i]"
+              class="absolute bg-white shadow-md rounded-md mt-2 right-0 w-48"
+            >
+              <ul class="text-sm">
+                <li
+                  class="px-4 py-2 hover:bg-gray-100 flex items-center cursor-pointer"
+                  (click)="viewDetails(org)"
+                >
+                  <img
+                    src="/icon/eye.png"
+                    alt="View Icon"
+                    class="w-4 h-4 mr-2"
+                  />
+                  <span>View Details</span>
+                </li>
+                <li
+                  class="px-4 py-2 hover:bg-gray-100 flex items-center cursor-pointer"
+                  (click)="editOrganization(org)"
+                >
+                  <img
+                    src="/icon/pen.png"
+                    alt="Edit Icon"
+                    class="w-4 h-4 mr-2"
+                  />
+                  <span>Edit</span>
+                </li>
+              </ul>
+            </div>
           </td>
         </tr>
       </tbody>
     </table>
-  </div>
-
-  <div class="pagination flex justify-between items-center">
-    <button class="show-entries px-3 py-2 rounded-lg bg-gray-200">
-      Show 10
-    </button>
-    <span class="text-sm text-gray-600">
-      Showing 1 to 10 of{{ organizations.length }}</span
-    >
   </div>
 </div>

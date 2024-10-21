@@ -216,18 +216,19 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser'; // Import Angular Title service
 import { TitleService } from '../title.service'; // Ensure TitleService is imported correctly
-
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-header',
   standalone: true,
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  imports: [CommonModule],
 })
 export class HeaderComponent implements OnInit {
   title: string = 'Default Title'; // Keep title as a string
-
   constructor(
     private router: Router,
+
     private activatedRoute: ActivatedRoute,
     private titleService: TitleService,
     private titleServiceFromBrowser: Title // Rename for clarity
@@ -235,6 +236,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     // Subscribe to the title observable
+
     this.titleService.title$.subscribe((newTitle) => {
       this.title = newTitle; // Update the title when it changes
       this.titleServiceFromBrowser.setTitle(newTitle); // Set the document title

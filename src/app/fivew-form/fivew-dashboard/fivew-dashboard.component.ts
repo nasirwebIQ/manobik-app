@@ -1,14 +1,16 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-fivew-dashboard',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, FormsModule],
   templateUrl: './fivew-dashboard.component.html',
   styleUrl: './fivew-dashboard.component.scss',
 })
 export class FivewDashboardComponent {
+  searchTerm: string = '';
   users = [
     {
       name: 'Khalid',
@@ -121,4 +123,18 @@ export class FivewDashboardComponent {
       logo: 'images/user-avatar.png',
     },
   ];
+  filteredUsers() {
+    const searchStr = this.searchTerm.toLowerCase();
+    return this.users.filter((user) => {
+      return (
+        // user.no.toString().includes(searchStr) || // Check for 'no'
+        user.name.toLowerCase().includes(searchStr) || // Check for user name
+        user.orgname.toLowerCase().includes(searchStr) || // Check for organization name
+        user.userRole.toLowerCase().includes(searchStr) || // Check for user role
+        user.designation.toLowerCase().includes(searchStr) || // Check for designation
+        user.email.toLowerCase().includes(searchStr) || // Check for email
+        user.phone.includes(searchStr) // Check for phone
+      );
+    });
+  }
 }

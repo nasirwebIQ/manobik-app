@@ -7,6 +7,7 @@
         type="text"
         placeholder="Search..."
         class="px-4 py-2 border border-gray-300 rounded-lg"
+        [(ngModel)]="searchTerm"
       />
       <button
         class="px-4 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200"
@@ -59,7 +60,7 @@
         </tr>
       </thead>
       <tbody class="bg-white divide-y divide-gray-200">
-        <tr *ngFor="let user of users; let i = index">
+        <tr *ngFor="let user of filteredUsers(); let i = index">
           <td class="px-5 py-4 text-sm">{{ i + 1 }}</td>
           <td class="px-5 py-4">
             <div class="flex items-center">

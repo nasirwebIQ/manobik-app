@@ -2,6 +2,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { OrganizationService } from '../organization.service';
 
 @Component({
   selector: 'app-organization-list',
@@ -11,7 +12,10 @@ import { Router } from '@angular/router';
   styleUrl: './organization-list.component.scss',
 })
 export class OrganizationListComponent {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private organizationService: OrganizationService
+  ) {} // Inject the service
   organizations = [
     {
       name: 'Organization 1',
@@ -20,6 +24,8 @@ export class OrganizationListComponent {
       head: 'Khalid Mursalin',
       userCount: 7,
       logo: 'images/org-logo.png',
+      role: 'Admin',
+      designation: 'Manager',
     },
     {
       name: 'Organization 2',
@@ -28,6 +34,8 @@ export class OrganizationListComponent {
       head: 'Nahid Ahmed',
       userCount: 10,
       logo: 'images/org-logo.png',
+      role: 'Admin',
+      designation: 'Manager',
     },
     {
       name: 'Organization 3',
@@ -36,6 +44,8 @@ export class OrganizationListComponent {
       head: 'Shakib Rahman',
       userCount: 6,
       logo: 'images/org-logo.png',
+      role: 'Admin',
+      designation: 'Manager',
     },
     {
       name: 'Organization 4',
@@ -44,6 +54,8 @@ export class OrganizationListComponent {
       head: 'Pranto Rahman',
       userCount: 9,
       logo: 'images/org-logo.png',
+      role: 'Admin',
+      designation: 'Manager',
     },
     {
       name: 'Organization 5',
@@ -52,6 +64,8 @@ export class OrganizationListComponent {
       head: 'Taimor Khan',
       userCount: 8,
       logo: 'images/org-logo.png',
+      role: 'Admin',
+      designation: 'Manager',
     },
     {
       name: 'Organization 6',
@@ -60,6 +74,8 @@ export class OrganizationListComponent {
       head: 'Kidwa Chowdhury',
       userCount: 4,
       logo: 'images/org-logo.png',
+      role: 'Admin',
+      designation: 'Manager',
     },
     {
       name: 'Organization 7',
@@ -68,6 +84,8 @@ export class OrganizationListComponent {
       head: 'Ahmed Hossain',
       userCount: 5,
       logo: 'images/org-logo.png',
+      role: 'Admin',
+      designation: 'Manager',
     },
     {
       name: 'Organization 8',
@@ -76,6 +94,8 @@ export class OrganizationListComponent {
       head: 'Esmail Khan',
       userCount: 3,
       logo: 'images/org-logo.png',
+      role: 'Admin',
+      designation: 'Manager',
     },
     {
       name: 'Organization 9',
@@ -84,6 +104,8 @@ export class OrganizationListComponent {
       head: 'Samsad',
       userCount: 2,
       logo: 'images/org-logo.png',
+      role: 'Admin',
+      designation: 'Manager',
     },
     {
       name: 'Organization 10',
@@ -92,12 +114,15 @@ export class OrganizationListComponent {
       head: 'Faruque Simanta',
       userCount: 1,
       logo: 'images/org-logo.png',
+      role: 'Admin',
+      designation: 'Manager',
     },
   ];
 
   // State for filters
   selectedHead: string = '';
-  selectedEmail: string = '';
+  selectedEmail: string = ''; // Initially, show all organizations
+  searchTerm: string = '';
   filteredOrganizations = [...this.organizations];
 
   // State for filter popup visibility
@@ -112,7 +137,18 @@ export class OrganizationListComponent {
       const matchesEmail = this.selectedEmail
         ? org.email === this.selectedEmail
         : true;
-      return matchesHead && matchesEmail;
+
+      // Check if the organization name includes the search term (case insensitive)
+      const matchesName = org.name
+        .toLowerCase()
+        .includes(this.searchTerm.toLowerCase());
+
+      // Check if the email includes the search term (case insensitive)
+      const matchesEmailSearch = org.email
+        .toLowerCase()
+        .includes(this.searchTerm.toLowerCase());
+
+      return (matchesName || matchesEmailSearch) && matchesHead && matchesEmail;
     });
     this.filterPopupVisible = false; // Hide the filter popup after applying
   }
@@ -131,19 +167,16 @@ export class OrganizationListComponent {
   }
   menuVisible: boolean[] = [];
 
-  // Method to toggle the visibility of the action menu
+  // Method to toggle the visibility of the action menuZ
   toggleMenu(index: number) {
     this.menuVisible[index] = !this.menuVisible[index];
   }
 
   // Method to view details of an organization
   viewDetails(org: any) {
-    // Navigate to the details component, e.g., using Angular Router
-    // this.router.navigate(['/organization-details', org.id]);
-    console.log('View details for:', org);
-    this.router.navigate(['/organization/organization-detail']);
-    // Close the menu after navigating
-    this.closeAllMenus();
+    this.organizationService.setOrganizationData(org); // Pass organization data to the service
+    this.router.navigate(['/organization/organization-detail']); // Navigate to the details component
+    this.closeAllMenus(); // Close the menu after navigating
   }
 
   // Method to edit an organization

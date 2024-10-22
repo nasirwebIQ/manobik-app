@@ -4,7 +4,7 @@
     'translate-x-[-30%]': !sidebarOpen,
     'translate-x-0': sidebarOpen
   }"
-  class="transition-transform duration-500 h-screen bg-white border pt-[20px] flex flex-col items-center fixed"
+  class="border transition-transform duration-500 h-screen bg-white pt-[20px] flex flex-col items-center fixed"
 >
   <!-- Logo: only visible when sidebar is open -->
   <img
@@ -30,7 +30,7 @@
   </div>
 
   <!-- Navigation section -->
-  <nav class="flex flex-col w-full pl-[20px]">
+  <nav class="flex flex-col w-full" [ngClass]="{ 'pl-5': !sidebarOpen }">
     <!-- Main Menu: only visible when sidebar is open -->
     <span class="px-[30px] text-gray-500 text-[14px]" *ngIf="sidebarOpen">
       <p>Main Menu</p>
@@ -40,7 +40,7 @@
     <a
       routerLink="/profile"
       routerLinkActive="active"
-      class="flex gap-3 items-center px-[20px] py-[10px] text-[16px] text-gray-800 no-underline hover:bg-[#fff9fb] hover:text-[#ff007b]"
+      class="flex gap-3 items-center px-[20px] py-[10px] text-[16px] text-gray-800 no-underline hover:bg-[#fee7f2] hover:text-[#ff007b relative"
     >
       <img src="icon/category.png" alt="dashboard-icon" />
       <span *ngIf="sidebarOpen">Dashboard</span>
@@ -50,7 +50,7 @@
     <a
       routerLink="/fivew-form"
       routerLinkActive="active"
-      class="flex gap-3 items-center px-[20px] py-[10px] text-[16px] text-gray-800 no-underline hover:bg-[#fff9fb] hover:text-[#ff007b]"
+      class="flex gap-3 items-center px-[20px] py-[10px] text-[16px] text-gray-800 no-underline hover:bg-[#fee7f2] hover:text-[#ff007b]"
     >
       <img src="icon/document-text.png" alt="5wform-icon" />
       <span *ngIf="sidebarOpen">5W Form Data</span>
@@ -60,7 +60,7 @@
     <a
       routerLink="/plan-list"
       routerLinkActive="active"
-      class="flex gap-3 items-center px-[20px] py-[10px] text-[16px] text-gray-800 no-underline hover:bg-[#fff9fb] hover:text-[#ff007b]"
+      class="flex gap-3 items-center px-[20px] py-[10px] text-[16px] text-gray-800 no-underline hover:bg-[#fee7f2] hover:text-[#ff007b]"
     >
       <img src="icon/clipboard-text.png" alt="plan-icon" />
       <span *ngIf="sidebarOpen">Plan</span>
@@ -70,7 +70,7 @@
     <a
       routerLink="/organization"
       routerLinkActive="active"
-      class="flex gap-3 items-center px-[20px] py-[10px] text-[16px] text-gray-800 no-underline hover:bg-[#fff9fb] hover:text-[#ff007b]"
+      class="flex gap-3 items-center px-[20px] py-[10px] text-[16px] text-gray-800 no-underline hover:bg-[#fee7f2] hover:text-[#ff007b]"
     >
       <img src="icon/buildings.png" alt="org-icon" />
       <span *ngIf="sidebarOpen">Organization</span>
@@ -80,7 +80,7 @@
     <a
       routerLink="/user-list"
       routerLinkActive="active"
-      class="flex gap-3 items-center px-[20px] py-[10px] text-[16px] text-gray-800 no-underline hover:bg-[#fff9fb] hover:text-[#ff007b]"
+      class="flex gap-3 items-center px-[20px] py-[10px] text-[16px] text-gray-800 no-underline hover:bg-[#fee7f2] hover:text-[#ff007b]"
     >
       <img src="icon/people.png" alt="people-icon" />
       <span *ngIf="sidebarOpen">User Management</span>

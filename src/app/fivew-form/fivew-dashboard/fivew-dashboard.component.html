@@ -7,6 +7,7 @@
           type="text"
           placeholder="Search..."
           class="search-input pl-10 pr-3 py-2 border border-gray-300 rounded-lg"
+          [(ngModel)]="searchTerm"
         />
         <img
           src="icon/form-search-icon.png"
@@ -56,7 +57,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users; let i = index">
+        <tr *ngFor="let user of filteredUsers(); let i = index">
           <td class="p-3">{{ i + 1 }}</td>
           <td class="p-3">
             <div class="user-info flex items-center">

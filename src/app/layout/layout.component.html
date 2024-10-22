@@ -4,13 +4,13 @@
   <div
     class="main-content flex-1 transition-all duration-500"
     [ngClass]="{
-      'ml-[250px]': isSidebarOpen,
+      'ml-[203px]': isSidebarOpen,
       'ml-[58px]': !isSidebarOpen,
-      'ml-12': !isSidebarOpen
+      'ml-10': !isSidebarOpen
     }"
   >
     <app-header></app-header>
-    <div class="content-area p-5 flex-1 bg-gray-100">
+    <div class="h-full p-5 flex-1 bg-gray-100">
       <router-outlet></router-outlet>
     </div>
   </div>

@@ -7,6 +7,8 @@
         type="text"
         placeholder="Search..."
         class="p-2 border border-gray-300 rounded-lg"
+        [(ngModel)]="searchTerm"
+        (input)="applyFilter()"
       />
       <button
         (click)="toggleFilterPopup()"

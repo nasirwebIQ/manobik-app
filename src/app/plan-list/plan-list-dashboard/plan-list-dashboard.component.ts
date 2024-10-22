@@ -1,14 +1,16 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-plan-list-dashboard',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, FormsModule],
   templateUrl: './plan-list-dashboard.component.html',
   styleUrl: './plan-list-dashboard.component.scss',
 })
 export class PlanListDashboardComponent {
+  searchTerm = '';
   users = [
     {
       name: 'Khalid',
@@ -63,7 +65,7 @@ export class PlanListDashboardComponent {
       name: 'Esmail ',
       phone: '+880 1958674857',
       submission_date: 'May22,2024',
-      location: 'Badda Ghudaragat,Badda,Dhaka-1212',
+      location: 'Badda Ghudaragat,Badda,Dhaka-1213',
       logo: 'images/user-avatar.png',
     },
     {
@@ -81,4 +83,16 @@ export class PlanListDashboardComponent {
       logo: 'images/user-avatar.png',
     },
   ];
+  filteredUsers() {
+    const searchStr = this.searchTerm.toLowerCase();
+    return this.users.filter((user) => {
+      return (
+        // user.no.toString().includes(searchStr) || // Check for 'no'
+        user.name.toLowerCase().includes(searchStr) || // Check for user name
+        user.submission_date.toLowerCase().includes(searchStr) || // Check for organization name
+        user.location.toLowerCase().includes(searchStr) || // Check for user role
+        user.phone.includes(searchStr) // Check for phone
+      );
+    });
+  }
 }

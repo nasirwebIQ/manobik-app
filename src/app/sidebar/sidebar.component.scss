@@ -1,0 +1,38 @@
+/* Default link styles */
+a {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #808080; /* Default text color */
+  position: relative;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Icon next to text */
+
+/* Active state for the router link */
+a.active {
+  background-color: #fee7f2; /* Light pink background */
+  color: #ff007b; /* Pink text color */
+}
+
+/* Active state for the icon */
+
+/* Pink border on the right side when active */
+a.active::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 3px;
+  height: 100%;
+  background-color: #ff007b; /* Pink border */
+  border-radius: 2px;
+}
+
+/* Hover state for extra effect */
+a:hover {
+  color: #ff007b;
+  background-color: #fff9fb;
+}

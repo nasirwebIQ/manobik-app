@@ -1,15 +1,17 @@
 import { NgFor, CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user-dashboard',
   standalone: true,
-  imports: [NgFor, CommonModule],
+  imports: [NgFor, CommonModule, FormsModule],
   templateUrl: './user-dashboard.component.html',
   styleUrl: './user-dashboard.component.scss',
 })
 export class UserDashboardComponent {
+  searchTerm = '';
   users = [
     {
       name: 'Khalid',
@@ -125,5 +127,21 @@ export class UserDashboardComponent {
   constructor(private router: Router) {}
   cretarUser() {
     this.router.navigate(['/user-list/create-user']);
+  }
+  filteredUsers() {
+    const searchStr = this.searchTerm.toLowerCase();
+    return this.users.filter((user) => {
+      return (
+        // user.no.toString().includes(searchStr) || // Check for 'no'
+        user.name.toLowerCase().includes(searchStr) || // Check for user name
+        user.orgname.toLowerCase().includes(searchStr) || // Check for organization name
+        user.userRole.toLowerCase().includes(searchStr) || // Check for user role
+        user.designation.toLowerCase().includes(searchStr) || // Check for user role
+        user.email.toLowerCase().includes(searchStr) || // Check for user role
+        user.head.toLowerCase().includes(searchStr) || // Check for user role
+        user.userCount.toString().includes(searchStr) || // Check for user role
+        user.phone.includes(searchStr) // Check for phone
+      );
+    });
   }
 }

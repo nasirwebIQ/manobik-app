@@ -13,7 +13,7 @@ import { CreateUserComponent } from './user-list/create-user/create-user.compone
 import { ResetPasswordComponent } from './user-list/reset-password/reset-password.component';
 import { LoginSuccesfullComponent } from './login-succesfull/login-succesfull.component';
 import { ResponsiveComponent } from './responsive/responsive.component';
-import { OrganizationDetailsComponent } from './organization-details/organization-details.component';
+import { OrganizationDetailComponent } from './organization-details/organization-details.component';
 import { EditOrganizationComponent } from './edit-organization/edit-organization.component';
 
 export const routes: Routes = [
@@ -44,8 +44,8 @@ export const routes: Routes = [
         data: { title: 'Organization' },
       },
       {
-        path: 'organization-detail',
-        component: OrganizationDetailsComponent,
+        path: 'organization-detail', // :id is the parameter
+        component: OrganizationDetailComponent,
         data: { title: 'Organization Details' },
       },
       {

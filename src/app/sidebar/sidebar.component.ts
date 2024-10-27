@@ -18,7 +18,7 @@
 //   }
 // }
 
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -29,13 +29,22 @@ import { CommonModule } from '@angular/common';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'], // Fix: should be styleUrls
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
   @Output() sidebarToggle = new EventEmitter<boolean>();
-  sidebarOpen = true;
 
+  sidebarOpen = false; // Default value
+
+  ngOnInit() {
+    // Load the sidebar state from localStorage on component initialization
+    const savedSidebarState = localStorage.getItem('sidebarOpen');
+    this.sidebarOpen = savedSidebarState === 'true'; // Convert string to boolean
+    console.log('Loaded sidebar state:', this.sidebarOpen);
+    this.sidebarToggle.emit(this.sidebarOpen);
+  }
   changeSidebarStatus() {
-    this.sidebarOpen = !this.sidebarOpen;
+    this.sidebarOpen = !this.sidebarOpen; // Toggle the sidebar state
+    localStorage.setItem('sidebarOpen', String(this.sidebarOpen)); // Save the new state to local storage
     this.sidebarToggle.emit(this.sidebarOpen); // Emit the new status
-    console.log('Sidebar status changed:', this.sidebarOpen);
+    console.log('Sidebar status changed:', this.sidebarOpen); // Log the new status
   }
 }

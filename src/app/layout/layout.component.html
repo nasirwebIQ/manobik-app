@@ -1,4 +1,4 @@
-<div class="layout-container flex">
+<div class="flex">
   <app-sidebar (sidebarToggle)="handleSidebarToggle($event)"></app-sidebar>
 
   <div
@@ -10,8 +10,10 @@
     }"
   >
     <app-header></app-header>
-    <div class="h-full p-5 flex-1 bg-gray-100">
-      <router-outlet></router-outlet>
+    <div class="h-screen">
+      <div class="h-full p-5 flex-1 bg-gray-100">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 </div>
